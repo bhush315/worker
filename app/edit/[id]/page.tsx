@@ -1,12 +1,10 @@
- 
-
 "use client";
 import React, { useState, useEffect } from "react";
 
 // This will allow you to access the dynamic params from the URL
 import { useParams } from "next/navigation";
 
-const EditPage = ({ params }: { params: { id: string } }) => {
+const EditPage = () => {
   const { id } = useParams(); // Use `useParams` to access the dynamic ID parameter
   const [formData, setFormData] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
@@ -29,7 +27,7 @@ const EditPage = ({ params }: { params: { id: string } }) => {
           setError("Blog not found");
         }
       } catch (error) {
-        setError("Failed to fetch blog data");
+        setError("Failed to fetch blog data" + error);
       } finally {
         setLoading(false); // Set loading to false once data is fetched
       }
@@ -65,7 +63,7 @@ const EditPage = ({ params }: { params: { id: string } }) => {
         setError(data.error); // Set error message if the update fails
       }
     } catch (error) {
-      setError("Failed to update blog");
+      setError("Failed to update blog" + error);
     } finally {
       setLoading(false); // Set loading to false after submission
     }

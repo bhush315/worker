@@ -1,5 +1,3 @@
- 
-
 import { prisma } from "@/app/libs/prisma";
 import { NextResponse } from "next/server";
 
@@ -22,7 +20,7 @@ export async function GET(
   } catch (error) {
     // console.error("Error fetching blog:", error);
     return NextResponse.json(
-      { success: false, error: "Unable to fetch blog" },
+      { success: false, error: "Unable to fetch blog" + error },
       { status: 500 }
     );
   }
@@ -40,7 +38,7 @@ export async function DELETE(
     return NextResponse.json({ success: true, data: response });
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: "Unable to delete blog" },
+      { success: false, error: "Unable to delete blog" + error },
       { status: 500 }
     );
   }
@@ -65,7 +63,7 @@ export async function PUT(
     });
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: "Unable to update blog" },
+      { success: false, error: "Unable to update blog" + error },
       { status: 500 }
     );
   }

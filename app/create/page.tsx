@@ -40,9 +40,9 @@ const CreateBlog = () => {
       setSuccess(true);
       setLoading(false);
       setFormData({ name: "", email: "" });
-    } catch (error: any) {
+    } catch (error) {
       // Catch any unexpected errors (like network errors)
-      setError(error.message || "An unexpected error occurred");
+      setError("An unexpected error occurred");
       console.error("Error creating blog:", error);
     } finally {
       setLoading(false);

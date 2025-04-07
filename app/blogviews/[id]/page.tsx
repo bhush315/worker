@@ -58,7 +58,7 @@ export default function BlogPage() {
           setError(result.error);
         }
       } catch (error) {
-        setError("Failed to fetch blog");
+        setError("Failed to fetch blog" + error);
       } finally {
         setIsLoading(false);
       }
@@ -91,7 +91,7 @@ export default function BlogPage() {
 
       Router.push("/"); // Navigate back to the home page after deleting the blog
     } catch (error) {
-      setError("Failed to delete blog");
+      setError("Failed to delete blog" + error);
     }
   };
 

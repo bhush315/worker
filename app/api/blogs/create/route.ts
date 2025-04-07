@@ -1,5 +1,3 @@
- 
-
 import { prisma } from "@/app/libs/prisma";
 import { NextResponse } from "next/server";
 
@@ -51,7 +49,7 @@ export async function POST(req: Request) {
 // This is a GET request handler that fetches all workers from the database
 // and returns them in JSON format. It orders the workers by their creation date in descending order.
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await prisma.worker.findMany({
       orderBy: { createdAt: "desc" },
