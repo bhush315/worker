@@ -4,10 +4,14 @@ import { NextResponse } from "next/server";
 // Single Page View
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  {
+    params,
+  }: {
+    params: Promise<{ id: string }>;
+  }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const response = await prisma.worker.findUnique({ where: { id } });
     if (!response) {
       return NextResponse.json(
@@ -27,10 +31,14 @@ export async function GET(
 // Delete Post
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  {
+    params,
+  }: {
+    params: Promise<{ id: string }>;
+  }
 ) {
   try {
-    const { id } = params; // Directly use `params` without `await`
+    const { id } = await params; // Directly use `params` without `await`
     const response = await prisma.worker.delete({ where: { id } });
     return NextResponse.json({ success: true, data: response });
   } catch (error) {
@@ -44,10 +52,14 @@ export async function DELETE(
 // Update Post
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  {
+    params,
+  }: {
+    params: Promise<{ id: string }>;
+  }
 ) {
   try {
-    const { id } = params; // Directly use `params` without `await`
+    const { id } = await params; // Directly use `params` without `await`
     const { name, email } = await req.json(); // Using req.json() to get the request body
     const response = await prisma.worker.update({
       where: { id },
