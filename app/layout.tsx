@@ -28,12 +28,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased p-10`}
       >
-        <div className="mx-auto mb-6 mt-5 p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <div className="flex flex-nowrap justify-center items-center mx-auto mb-6 mt-5 p-3 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
           <Link href="/" className="bg-amber-500 mr-2 py-3 px-7 rounded-md">
-            View Workers
+            View
           </Link>
           <Link href="/create" className="bg-green-500 py-3 px-7 rounded-md">
-            Create Worker
+            Create
           </Link>
         </div>
 
