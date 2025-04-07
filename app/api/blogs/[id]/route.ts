@@ -1,14 +1,13 @@
 import { prisma } from "@/app/libs/prisma";
 import { NextResponse } from "next/server";
 
-/// Single Page View
+// Single Page View
 export async function GET(
-  Req: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
     const { id } = params;
-    // Implement your logic here to fetch a blog by its ID
     const response = await prisma.worker.findUnique({ where: { id } });
     if (!response) {
       return NextResponse.json(
@@ -18,27 +17,25 @@ export async function GET(
     }
     return NextResponse.json({ success: true, data: response });
   } catch (error) {
-    // console.error("Error fetching blog:", error);
     return NextResponse.json(
-      { success: false, error: "Unable to fetch blog" + error },
+      { success: false, error: "Unable to fetch blog: " + error },
       { status: 500 }
     );
   }
 }
 
-// Delete POst
-
+// Delete Post
 export async function DELETE(
-  Req: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params;
+    const { id } = params; // Directly use `params` without `await`
     const response = await prisma.worker.delete({ where: { id } });
     return NextResponse.json({ success: true, data: response });
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: "Unable to delete blog" + error },
+      { success: false, error: "Unable to delete blog: " + error },
       { status: 500 }
     );
   }
@@ -46,24 +43,24 @@ export async function DELETE(
 
 // Update Post
 export async function PUT(
-  Req: Request,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params;
-    const { name, email } = await Req.json();
+    const { id } = params; // Directly use `params` without `await`
+    const { name, email } = await req.json(); // Using req.json() to get the request body
     const response = await prisma.worker.update({
       where: { id },
       data: { name, email },
     });
     return NextResponse.json({
       success: true,
-      message: "Blog deleted successfully",
+      message: "Blog updated successfully",
       data: response,
     });
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: "Unable to update blog" + error },
+      { success: false, error: "Unable to update blog: " + error },
       { status: 500 }
     );
   }
