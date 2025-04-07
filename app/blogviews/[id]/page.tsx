@@ -113,13 +113,6 @@ export default function BlogPage() {
       {/* Display the formatted date */}
       <p className="mt-4 space-x-4">
         <button
-          onClick={() => Router.push("/")}
-          className="cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-        >
-          Back to Home
-        </button>{" "}
-        <br />
-        <button
           onClick={() => Router.push(`/edit/${blog.id}`)}
           className="cursor-pointer px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
         >
